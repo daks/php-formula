@@ -151,6 +151,22 @@ verifier:
     - cli
 
 suites:
+  - name: default
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - php
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - php
+      pillars_from_files:
+        php.sls: test/salt/pillar/default.sls
+    verifier:
+      inspec_tests:
+        - path: test/integration/default
   - name: debian
     includes:
       - debian-10-master-py3
